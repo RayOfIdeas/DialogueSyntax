@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\_My Resources\\OtherProjects\\DialogueSyntax\\DialogueSyntaxRepo\\DialogueSyntaxSamples\\DialogueSyntaxSamples\\DialogueSyntaxSamples.csproj",
+      "projectUniqueName": "D:\\_My Resources\\OtherProjects\\DialogueSyntax\\DialogueSyntaxRepo\\SampleProjects\\DialogueSyntaxSamples_C#\\DialogueSyntaxSamples\\DialogueSyntaxSamples.csproj",
       "projectName": "DialogueSyntaxSamples",
-      "projectPath": "D:\\_My Resources\\OtherProjects\\DialogueSyntax\\DialogueSyntaxRepo\\DialogueSyntaxSamples\\DialogueSyntaxSamples\\DialogueSyntaxSamples.csproj",
+      "projectPath": "D:\\_My Resources\\OtherProjects\\DialogueSyntax\\DialogueSyntaxRepo\\SampleProjects\\DialogueSyntaxSamples_C#\\DialogueSyntaxSamples\\DialogueSyntaxSamples.csproj",
       "packagesPath": "C:\\Users\\Raynhard\\.nuget\\packages\\",
-      "outputPath": "D:\\_My Resources\\OtherProjects\\DialogueSyntax\\DialogueSyntaxRepo\\DialogueSyntaxSamples\\DialogueSyntaxSamples\\obj\\",
+      "outputPath": "D:\\_My Resources\\OtherProjects\\DialogueSyntax\\DialogueSyntaxRepo\\SampleProjects\\DialogueSyntaxSamples_C#\\DialogueSyntaxSamples\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
