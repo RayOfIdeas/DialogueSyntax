@@ -1,0 +1,19 @@
+﻿<START>
+[Bob] Hello, Rick!
+[Rick] Hi there, Bob!
+[GOTO] {BRANCH_1}
+
+<BRANCH_1>
+[Bob] It's been a while, huh?
+[Rick] Surely do
+[CHOICES]
+Do you like chocolate? {BRANCH_1_1}
+Do you like banana? {BRANCH_1_2}
+
+<BRANCH_1_1>
+[Bob] I was wondering, do you choco?
+[Rick] Heck! I like them!
+
+<BRANCH_1_2>
+[Bob] So, do you like banana?
+[Rick] Excuse me?
