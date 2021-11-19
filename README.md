@@ -197,3 +197,8 @@ This simple flow of algorithm can retrieve a collection of data that is separate
 4. If the loop encounter the closing token, add the characters from the opening token to this point of the loop to a list.
 5. Remove the those characters from the whole text.
 6. Repeat step 2 to 5 until the loop can no longer find the opening token inside the whole text.
+
+---
+
+## Sample Projects
+More examples can be found in https://github.com/RayOfIdeas/DialogueSyntax 
