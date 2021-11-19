@@ -162,7 +162,7 @@ However, for the sake of simplicity and to prevent human errors, parameter token
 
 ---
 
-## parser
+## Parsing
 To retrieve data from a `.txt` file that uses DialogueSyntax, simply create some functions in your project using your preferred programming language by observing the Separation and Encapsulation methods.
 
 ### Retrieve data after the separator token
