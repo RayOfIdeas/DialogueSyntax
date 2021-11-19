@@ -85,7 +85,7 @@ These samples use the terminology of "Branch". "Command", and "Parameter". A fil
 
 **Note:** the separator token of commands is the opening token of command's encapsulation method, which is "["
 
-**Note:** Using Separation and Encapsulation methods, the encoder can retrieve these data:
+**Note:** Using Separation and Encapsulation methods, the parser can retrieve these data:
 - `Branches` has one element of branches:
     + The first element has two properties:
         * `BranchName` : `START`
@@ -120,7 +120,7 @@ These samples use the terminology of "Branch". "Command", and "Parameter". A fil
     + `Bob` contains a parameter data of `How are you doing?`. 
     + `Rick` contains a parameter data of `I'm fine!`.
 
-**Note:** The usage of parameter tokens in `GOTO` are to help ensure both the writer and the encoder that the data contained inside the tokens must be retrieved as is. It also reminds the write that `GOTO` is not part of the spoken dialogue.
+**Note:** The usage of parameter tokens in `GOTO` are to help ensure both the writer and the parser that the data contained inside the tokens must be retrieved as is. It also reminds the write that `GOTO` is not part of the spoken dialogue.
 
 ### Branching Dialogue Sample
 
@@ -162,7 +162,7 @@ However, for the sake of simplicity and to prevent human errors, parameter token
 
 ---
 
-## Encoder
+## parser
 To retrieve data from a `.txt` file that uses DialogueSyntax, simply create some functions in your project using your preferred programming language by observing the Separation and Encapsulation methods.
 
 ### Retrieve data after the separator token

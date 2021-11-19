@@ -12,7 +12,7 @@ const string PARAMETER_CLOSE_TOKEN = "}";
 const string FIRST_BRANCH_NAME = "START";
 #endregion
 
-#region Encoding
+#region Parsing
 
 List<Branch> GetBranches(string text)
 {
@@ -20,21 +20,21 @@ List<Branch> GetBranches(string text)
 
     #region Separate Branches
 
-    var branchesText = StringUtility.StringUtility.SeparateToListAfterKey(text, BRANCH_OPEN_TOKEN);
+    var branchesText = StringUtility.StringUtility.SeparateToListAfterToken(text, BRANCH_OPEN_TOKEN);
 
     foreach (var branch in branchesText)
     {
-        var branchTuple = StringUtility.StringUtility.ExtractPairByNameKeys(branch, BRANCH_OPEN_TOKEN, BRANCH_CLOSE_TOKEN);
+        var branchTuple = StringUtility.StringUtility.ExtractPairByNameTokens(branch, BRANCH_OPEN_TOKEN, BRANCH_CLOSE_TOKEN);
         var branchName = branchTuple.Item1;
         var commandsText = branchTuple.Item2;
         List<Command> commandsData = new List<Command>();
 
         #region Separate Nodes
-        var commandsList = StringUtility.StringUtility.SeparateToListAfterKey(commandsText, COMMAND_OPEN_TOKEN);
+        var commandsList = StringUtility.StringUtility.SeparateToListAfterToken(commandsText, COMMAND_OPEN_TOKEN);
 
         foreach (var commandText in commandsList)
         {
-            var commandTuple = StringUtility.StringUtility.ExtractPairByNameKeys(commandText, COMMAND_OPEN_TOKEN, COMMAND_CLOSE_TOKEN);
+            var commandTuple = StringUtility.StringUtility.ExtractPairByNameTokens(commandText, COMMAND_OPEN_TOKEN, COMMAND_CLOSE_TOKEN);
             var commandName = commandTuple.Item1;
             var parametersText = commandTuple.Item2;
 
@@ -56,17 +56,17 @@ List<Branch> GetBranches(string text)
     {
         if (command.Name == CommandType.GOTO.ToString())
         {
-            var targetBranch = StringUtility.StringUtility.ExtractByKeys(command.ParameterRaw, PARAMETER_OPEN_TOKEN, PARAMETER_CLOSE_TOKEN);
+            var targetBranch = StringUtility.StringUtility.ExtractByTokens(command.ParameterRaw, PARAMETER_OPEN_TOKEN, PARAMETER_CLOSE_TOKEN);
             CommandGoTo commandGoTo = new CommandGoTo(command.Name, command.ParameterRaw, targetBranch);
             return commandGoTo;
         }
         else if (command.Name == CommandType.CHOICES.ToString())
         {
             List<Choice> choicesData = new List<Choice>();
-            var choicesText = StringUtility.StringUtility.SeparateToListBeforeKey(command.ParameterRaw, PARAMETER_CLOSE_TOKEN);
+            var choicesText = StringUtility.StringUtility.SeparateToListBeforeToken(command.ParameterRaw, PARAMETER_CLOSE_TOKEN);
             foreach (var choiceText in choicesText)
             {
-                var choiceTuple = StringUtility.StringUtility.ExtractPairByParameterKeys(choiceText, PARAMETER_OPEN_TOKEN, PARAMETER_CLOSE_TOKEN);
+                var choiceTuple = StringUtility.StringUtility.ExtractPairByParameterTokens(choiceText, PARAMETER_OPEN_TOKEN, PARAMETER_CLOSE_TOKEN);
                 Choice choiceData = new Choice(optionText: choiceTuple.Item1, targetBranch: choiceTuple.Item2);
                 choicesData.Add(choiceData);
             }
@@ -88,6 +88,8 @@ List<Branch> GetBranches(string text)
 
 string text = DialogueSyntaxSamples.Properties.Resources.sample_text;
 List<Branch> branches = GetBranches(text);
+
+// In this example, the branch with the name of FIRST_BRANCH_NAME will always be displayed first
 Branch startBranch = branches.Find(branch => branch.Name == FIRST_BRANCH_NAME);
 DisplayDialogue(startBranch, branches);
 

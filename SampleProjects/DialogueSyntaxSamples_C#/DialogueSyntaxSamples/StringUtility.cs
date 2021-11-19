@@ -7,10 +7,13 @@ namespace StringUtility
 {
     public static class StringUtility
     {
-        #region [Modifier Methods]
+        #region [Modifying Methods]
 
         /// <summary>
-        /// Replace only the first occurence of the searched string
+        /// Replace only the first occurence of the searched string<br></br><br></br>
+        /// Search: "world", Replace: "you"<br></br>
+        /// Input: "Hello, world!"<br></br>
+        /// Ouput: "Hello, you!"
         /// </summary>
         /// <param name="text">whole text</param>
         /// <param name="search">to be replaced text</param>
@@ -27,14 +30,17 @@ namespace StringUtility
         }
 
         /// <summary>
-        /// Remove parts of text that are enclosed by an open and a close key
+        /// Remove parts of text that are enclosed by an open and a close token<br></br><br></br>
+        /// OpenToken: "{", CloseToken: "}"<br></br>
+        /// Input: "Hello{, world}!"<br></br>
+        /// Ouput: "Hello!"
         /// </summary>
         /// <param name="text">input string</param>
         /// <param name="openToken">The string that indentify the start of the string</param>
         /// <param name="closeToken">The string that identify the end of the string</param>
         /// <param name="count">The number of removal; To remove all occurence : -1</param>
-        /// <returns>The remaining text which has no enclosed texts and the keys</returns>
-        public static string RemoveByKeys(string text, string openToken, string closeToken, int count = -1)
+        /// <returns>The remaining text which has no enclosed texts and the tokens</returns>
+        public static string RemoveByTokens(string text, string openToken, string closeToken, int count = -1)
         {
             while (text.IndexOf(openToken) != -1)
             {
@@ -47,7 +53,7 @@ namespace StringUtility
 
                 if (end == -1)
                 {
-                    Console.WriteLine("[StringUtility] RemoveByKeys: expecting another '" + closeToken + "' in this text:\n" + text);
+                    Console.WriteLine("[StringUtility] RemoveByTokens: expecting another '" + closeToken + "' in this text:\n" + text);
                     break;
                 }
 
@@ -64,15 +70,16 @@ namespace StringUtility
         #region [Separator Methods]
 
         /// <summary>
-        /// Segregate a text into texts using a separatorKey
-        /// Separation starts after the key; Example:<br></br><br></br>
-        /// input: "separtion zero [separation one [separation 2"<br></br>
-        /// output: "[separation one", "[separation two"
+        /// Segregate a text into texts using a separatorToken
+        /// Separation starts after the token; Example:<br></br><br></br>
+        /// Token: "["<br></br>
+        /// Input: "separtion zero [separation one [separation 2"<br></br>
+        /// Output: "[separation one", "[separation two"
         /// </summary>
         /// <param name="text">input string</param>
         /// <param name="separatorToken">The string that identify the separation from one text to another</param>
         /// <returns>A list of separated texts</returns>
-        public static List<string> SeparateToListAfterKey(string text, string separatorToken)
+        public static List<string> SeparateToListAfterToken(string text, string separatorToken)
         {
             List<string> separatedTexts = new List<string>();
             string _text = text;
@@ -101,15 +108,16 @@ namespace StringUtility
         }
 
         /// <summary>
-        /// Segregate a text into texts using a separatorKey
-        /// Separation starts before the key; Example:<br></br><br></br>
-        /// input: "separtion zero [separation one [separation 2"<br></br>
-        /// output: "separation zero [", "separation one ["
+        /// Segregate a text into texts using a separatorToken
+        /// Separation starts before the token; Example:<br></br><br></br>
+        /// Token: "["<br></br>
+        /// Input: "separtion zero [separation one [separation 2"<br></br>
+        /// Output: "separation zero [", "separation one ["
         /// </summary>
         /// <param name="text">input string</param>
         /// <param name="separatorToken">The string that identify the separation from one text to another</param>
         /// <returns>A list of separated texts</returns>
-        public static List<string> SeparateToListBeforeKey(string text, string separatorToken)
+        public static List<string> SeparateToListBeforeToken(string text, string separatorToken)
         {
             List<string> separatedTexts = new List<string>();
             string _text = text;
@@ -143,6 +151,7 @@ namespace StringUtility
 
         /// <summary>
         /// Extract the name and the parameter from a string that must contain both<br></br><br></br>
+        /// OpenToken: "[", CloseToken: "]"<br></br>
         /// input : "[myName] My paramater"<br></br>
         /// output: "myName", "My parameter"
         /// </summary>
@@ -150,7 +159,7 @@ namespace StringUtility
         /// <param name="nameOpenToken">The string that indentify the start of the name</param>
         /// <param name="nameCloseToken">The string that identify the end of the name</param>
         /// <returns>(name,parameter)</returns>
-        public static (string, string) ExtractPairByNameKeys(string text, string nameOpenToken, string nameCloseToken)
+        public static (string, string) ExtractPairByNameTokens(string text, string nameOpenToken, string nameCloseToken)
         {
             // Extract name
             int startIndex_Name = text.IndexOf(nameOpenToken);
@@ -178,14 +187,15 @@ namespace StringUtility
 
         /// <summary>
         /// Extract the name and the parameter from a string that must contain both<br></br><br></br>
-        /// input: "my name {myParameter}"<br></br>
-        /// output: "my name", "myParameter"
+        /// OpenToken: "{", CloseToken: "}"<br></br>
+        /// Input: "my name {myParameter}"<br></br>
+        /// Output: "my name", "myParameter"
         /// </summary>
         /// <param name="text">input string</param>
         /// <param name="parameterOpenToken">The string that indentify the start of the name</param>
         /// <param name="parameterCloseToken">The string that identify the end of the name</param>
         /// <returns>(name,parameter)</returns>
-        public static (string, string) ExtractPairByParameterKeys(string text, string parameterOpenToken, string parameterCloseToken)
+        public static (string, string) ExtractPairByParameterTokens(string text, string parameterOpenToken, string parameterCloseToken)
         {
             // Extract name
             int startIndex_Name = 0;
@@ -214,13 +224,16 @@ namespace StringUtility
         }
 
         /// <summary>
-        /// Extract a string that's enclosed by an open key and a close key
+        /// Extract a string that's enclosed by an open token and a close token<br></br><br></br>
+        /// OpenToken: "{", CloseToken: "}"<br></br>
+        /// Input: "Hello, {world}!"<br></br>
+        /// Output:"world"
         /// </summary>
         /// <param name="text">input string</param>
         /// <param name="openToken">The string that indentify the start of the string</param>
         /// <param name="closeToken">The string that identify the end of the string</param>
         /// <returns>Text that's enclosed</returns>
-        public static string? ExtractByKeys(string text, string openToken, string closeToken, bool suppressWarning = false)
+        public static string? ExtractByTokens(string text, string openToken, string closeToken, bool suppressWarning = false)
         {
             int startIndex_Name = text.IndexOf(openToken);
             int endIndex_Name = text.IndexOf(closeToken);
@@ -228,13 +241,13 @@ namespace StringUtility
 
             if (startIndex_Name == -1)
             {
-                if (!suppressWarning) Console.WriteLine("[StringUtility] ExtractByKeys: cannot find '" + openToken + "' in this text:\n" + text);
+                if (!suppressWarning) Console.WriteLine("[StringUtility] ExtractByTokens: cannot find '" + openToken + "' in this text:\n" + text);
                 return null;
             }
 
             if (endIndex_Name == -1)
             {
-                if (!suppressWarning) Console.WriteLine("[StringUtility] ExtractByKeys: cannot find '" + closeToken + "' in this text:\n" + text);
+                if (!suppressWarning) Console.WriteLine("[StringUtility] ExtractByTokens: cannot find '" + closeToken + "' in this text:\n" + text);
                 return null;
             }
 
@@ -244,22 +257,25 @@ namespace StringUtility
         }
 
         /// <summary>
-        /// Extract all texts that are enclosed by an open key and a close key
+        /// Extract all texts that are enclosed by an open token and a close token<br></br><br></br>
+        /// OpenToken: "{", CloseToken: "}"<br></br>
+        /// Input: "{Hello}, {world}!"<br></br>
+        /// Output:"Hello","world"
         /// </summary>
         /// <param name="text">input string</param>
         /// <param name="openToken">The string that indentify the start of the string</param>
         /// <param name="closeToken">The string that identify the end of the string</param>
         /// <returns>All texts that are enclosed</returns>
-        public static List<string> ExtractAllByKeys(string text, string openToken, string closeToken)
+        public static List<string> ExtractAllByTokens(string text, string openToken, string closeToken)
         {
             List<string> extractedTexts = new List<string>();
             while (true)
             {
-                string? extractedText = ExtractByKeys(text, openToken, closeToken);
+                string? extractedText = ExtractByTokens(text, openToken, closeToken);
                 if (!string.IsNullOrEmpty(extractedText))
                 {
                     extractedTexts.Add(extractedText);
-                    text = RemoveByKeys(text, openToken, closeToken, 1);
+                    text = RemoveByTokens(text, openToken, closeToken, 1);
                     if (string.IsNullOrEmpty(text)) break;
                 }
                 else break;
